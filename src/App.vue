@@ -5,6 +5,8 @@
   <div>
     <h4>{{ products[0] }}</h4>
     <p>50 만원</p>
+    <button @click="increase">허위매물신고</button
+    ><span>신고수 : {{ count }}</span>
   </div>
   <div>
     <h4>{{ products[1] }}</h4>
@@ -12,8 +14,12 @@
   </div>
   <div>
     <h4>{{ products[2] }}</h4>
-    <p>70 만원</p>
+    <p>80 만원</p>
   </div>
+  <!-- <div v-for="(a, i) in products" :key="i" class="products">
+    <h4>{{ a }}</h4>
+    <p>{{ price[i] }} 만원</p>
+  </div> -->
 </template>
 
 <script>
@@ -21,10 +27,19 @@ export default {
   name: "App",
   data() {
     return {
+      count: 0,
       menu: ["Home", "Shop", "About"],
       products: ["역삼동 원룸", "천호동 원룸", "마포구 원룸"],
+      price: [50, 60, 80],
     };
   },
+
+  methods: {
+    increase() {
+      this.count += 1;
+    },
+  },
+
   components: {},
 };
 </script>
