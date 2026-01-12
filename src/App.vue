@@ -1,20 +1,35 @@
 <template>
+  <div class="black-bg" v-if="modalopen == true">
+    <div class="white-bg">
+      <h4>상세페이지</h4>
+      <p>상세페이지 내용</p>
+    </div>
+  </div>
+
   <div class="menu">
     <a v-for="(a, i) in menu" :key="i">{{ a }}</a>
   </div>
   <div>
-    <h4>{{ products[0] }}</h4>
+    <img src="./assets/room0.jpg" class="room-img" />
+    <!-- "./"가 현재 경로를 뜻함 -->
+    <h4 @click="modalopen = true">{{ products[0] }}</h4>
     <p>50 만원</p>
-    <button @click="increase">허위매물신고</button
-    ><span>신고수 : {{ count }}</span>
+    <button @click="count[0] += 1">허위매물신고</button
+    ><span>신고수 : {{ count[0] }}</span>
   </div>
   <div>
-    <h4>{{ products[1] }}</h4>
+    <img src="./assets/room1.jpg" class="room-img" />
+    <h4 @click="modalopen = true">{{ products[1] }}</h4>
     <p>70 만원</p>
+    <button @click="count[1]++">허위매물신고</button
+    ><span>신고수 : {{ count[1] }}</span>
   </div>
   <div>
-    <h4>{{ products[2] }}</h4>
+    <img src="./assets/room2.jpg" class="room-img" />
+    <h4 @click="modalopen = true">{{ products[2] }}</h4>
     <p>80 만원</p>
+    <button @click="count[2]++">허위매물신고</button
+    ><span>신고수 : {{ count[2] }}</span>
   </div>
   <!-- <div v-for="(a, i) in products" :key="i" class="products">
     <h4>{{ a }}</h4>
@@ -27,10 +42,10 @@ export default {
   name: "App",
   data() {
     return {
-      count: 0,
+      modalopen: false,
+      count: [0, 0, 0],
       menu: ["Home", "Shop", "About"],
       products: ["역삼동 원룸", "천호동 원룸", "마포구 원룸"],
-      price: [50, 60, 80],
     };
   },
 
@@ -45,6 +60,34 @@ export default {
 </script>
 
 <style>
+body {
+  margin: 0;
+}
+
+div {
+  box-sizing: border-box;
+}
+
+.black-bg {
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  padding: 20px;
+}
+
+.white-bg {
+  width: 100%;
+  border-radius: 8px;
+  padding: 20px;
+  background: white;
+}
+
+.room-img {
+  width: 100%;
+  margin-top: 40px;
+}
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
