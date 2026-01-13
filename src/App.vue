@@ -3,6 +3,7 @@
     <div class="white-bg">
       <h4>상세페이지</h4>
       <p>상세페이지 내용</p>
+      <button @click="modalopen = false">닫기</button>
     </div>
   </div>
 
@@ -10,15 +11,13 @@
     <a v-for="(a, i) in menu" :key="i">{{ a }}</a>
   </div>
   <div>
-    <img src="./assets/room0.jpg" class="room-img" />
-    <!-- "./"가 현재 경로를 뜻함 -->
-    <h4 @click="modalopen = true">{{ products[0] }}</h4>
-    <p>50 만원</p>
-    <button @click="count[0] += 1">허위매물신고</button
-    ><span>신고수 : {{ count[0] }}</span>
+    <img :src="oneroom[0].image" class="room-img" />
+    <h4>{{ oneroom[0].title }}</h4>
+    <p>{{oneroom[0].price}}만원</p>
   </div>
   <div>
     <img src="./assets/room1.jpg" class="room-img" />
+    <!-- "./"가 현재 경로를 뜻함 -->
     <h4 @click="modalopen = true">{{ products[1] }}</h4>
     <p>70 만원</p>
     <button @click="count[1]++">허위매물신고</button
@@ -38,10 +37,13 @@
 </template>
 
 <script>
+import data from "./assets/data.js";
+
 export default {
   name: "App",
   data() {
     return {
+      oneroom: data,
       modalopen: false,
       count: [0, 0, 0],
       menu: ["Home", "Shop", "About"],
